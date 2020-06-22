@@ -61,4 +61,6 @@ namespace PlaceMyBet_Carlos_Tamarit_Martinez.Models
         public double Tipo_Apuesta { get; set; }
     }
 
+
+
 }

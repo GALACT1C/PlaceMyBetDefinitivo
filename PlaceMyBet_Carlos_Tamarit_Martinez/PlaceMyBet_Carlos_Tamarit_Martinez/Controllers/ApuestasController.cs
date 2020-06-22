@@ -21,13 +21,24 @@ namespace PlaceMyBet_Carlos_Tamarit_Martinez.Controllers
             return apuestasDTO;
         }
 
-        // GET: api/Apuestas/5
-        public Apuesta Get(int id)
+        //Ejercicio1
+        // GET : api/ApuestasExamen
+        public IEnumerable<ApuestaDTO> Get(int id_Mercado)
         {
-            /*var repo = new ApuestasRepository();
-            Apuesta a1 = repo.Retrieve();*/
-            return null;
+            var repo = new ApuestasRepository();
+            //List<Apuesta> apuestas = repo.Retrieve();
+            List<ApuestaDTO> apuestasDTO = repo.RetrieveExamen1(id_Mercado);
+            return apuestasDTO;
         }
+        //Fin Ejercicio1
+
+        // GET: api/Apuestas/5
+        //public Apuesta Get(int id)
+        //{
+        //    /*var repo = new ApuestasRepository();
+        //    Apuesta a1 = repo.Retrieve();*/
+        //    return null;
+        //}
 
         // POST: api/Apuestas
         public void Post([FromBody]Apuesta apuesta)
