@@ -128,6 +128,46 @@ namespace PlaceMyBet_Carlos_Tamarit_Martinez.Models
         }
         //Fin Ejercicio1
 
+        //Ejercicio2
+        internal List<ApuestaDTO> RetrieveExamen2(string dni, string cuota)
+        {
+            MySqlConnection con = Connect();
+            MySqlCommand command = con.CreateCommand();
+            command.Parameters.AddWithValue("@A", dni);
+            command.Parameters.AddWithValue("B", cuota);
+            
+            command.CommandText = "select * from apuesta WHERE apuesta.DNI_Cliente = @A && apuesta.cuota = @B";
+
+
+            try
+            {
+                con.Open();
+                MySqlDataReader res = command.ExecuteReader();
+
+                ApuestaDTO dt = null;
+                List<ApuestaDTO> apuestasDTO = new List<ApuestaDTO>();
+
+                while (res.Read())
+                {
+                    Debug.WriteLine("Recuperado: " + res.GetDouble(0) + " " + res.GetInt32(1) + " " + res.GetString(2) + " " + res.GetBoolean(3) + " " + res.GetString(4));
+                    dt = new ApuestaDTO(res.GetDouble(0), res.GetInt32(1), res.GetString(2), res.GetBoolean(3), res.GetString(4));
+                    apuestasDTO.Add(dt);
+                }
+                con.Close();
+                return apuestasDTO;
+
+            }
+            catch (MySqlException e)
+            {
+                Debug.WriteLine("Se ha producido un error de conexión");
+                return null;
+            }
+
+        }
+        //Fin Ejercicio2
+
+
+
         internal void Save(Apuesta a)
         {
             CultureInfo culInfo = new System.Globalization.CultureInfo("es-ES");
