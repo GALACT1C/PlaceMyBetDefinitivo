@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace PlaceMyBet_Carlos_Tamarit_Martinez.Controllers
 {
-    [Authorize]
+    //[Authorize]
     //(Roles = "Admin")
     public class ApuestasController : ApiController
     {

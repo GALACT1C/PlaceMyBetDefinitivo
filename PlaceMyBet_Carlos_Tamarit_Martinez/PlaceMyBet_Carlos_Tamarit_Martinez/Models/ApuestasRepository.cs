@@ -17,11 +17,13 @@ namespace PlaceMyBet_Carlos_Tamarit_Martinez.Models
 
             return con;
         }
-        internal List<Apuesta> Retrieve()
+        internal List<Apuesta> Retrieve()//int nºApuesta
         {
             MySqlConnection con = Connect();
             MySqlCommand command = con.CreateCommand();
             command.CommandText = "select * from apuesta";
+            //command.CommandText = "select * from apuesta where id_apuesta = @A";
+            //command.Parameters.AddWithValue("@A", id_apuesta);
 
             try
             {
@@ -52,7 +54,8 @@ namespace PlaceMyBet_Carlos_Tamarit_Martinez.Models
         {
             MySqlConnection con = Connect();
             MySqlCommand command = con.CreateCommand();
-            command.CommandText = "select * from apuesta";
+            command.CommandText = "select dinero_apostado, mercado, cuota, overunder, DNI_Cliente from apuesta";
+            
 
             try
             {
